@@ -55,7 +55,7 @@ public class SysUnitServiceImpl extends BaseServiceImpl<Sys_unit> implements Sys
         if (!Strings.isEmpty(unit.getParentId())) {
             int count = count(Cnd.where("parentId", "=", unit.getParentId()));
             if (count < 1) {
-                dao().execute(Sqls.create("update sys_unit set hasChildren=0 where id=@pid").setParam("pid", unit.getParentId()));
+                dao().execute(Sqls.create("update sys_unit set hasChildren=false where id=@pid").setParam("pid", unit.getParentId()));
             }
         }
     }

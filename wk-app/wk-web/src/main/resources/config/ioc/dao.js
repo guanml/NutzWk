@@ -5,12 +5,15 @@ var ioc = {
             paths: ["config/custom/"]
         }
     },
-    dataSource: {
+    dsconfig: {
         factory: "$conf#make",
-        args: ["com.alibaba.druid.pool.DruidDataSource", "db."],
-        type: "com.alibaba.druid.pool.DruidDataSource",
+        args: ["com.zaxxer.hikari.HikariConfig", "pg."],
+        type: "com.zaxxer.hikari.HikariConfig"      
+    },
+    dataSource: {
+        args: [{refer: "dsconfig"}],
+        type: "com.zaxxer.hikari.HikariDataSource",
         events: {
-            create: "init",
             depose: 'close'
         }
     },

@@ -85,7 +85,8 @@ public class Sys_menu extends BaseModel implements Serializable {
     @Comment("排序字段")
     @Prev({
             @SQL(db= DB.MYSQL,value = "SELECT IFNULL(MAX(location),0)+1 FROM sys_menu"),
-            @SQL(db= DB.ORACLE,value = "SELECT COALESCE(MAX(location),0)+1 FROM sys_menu")
+            @SQL(db= DB.ORACLE,value = "SELECT COALESCE(MAX(location),0)+1 FROM sys_menu"),
+            @SQL(db= DB.PSQL,value = "SELECT COALESCE(MAX(location),0)+1 FROM sys_menu")
     })
     private Integer location;
 
